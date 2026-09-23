@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Field Notes Workshop — Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    --bg: #F2F3EE;
+    --surface: #FFFFFF;
+    --surface-sunken: #EAECE4;
+    --ink: #1F2A22;
+    --ink-soft: #5B6A5D;
+    --border: #DCDFD4;
+    --accent: #2F6F5E;
+    --accent-dark: #234F42;
+    --accent-tint: #E4EFEA;
+    --gold: #C98A3E;
+    --gold-tint: #FBF0DF;
+    --error: #B5432B;
+    --error-tint: #FBEAE5;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161C18;
+      --surface: #1F2721;
+      --surface-sunken: #253028;
+      --ink: #EDF1EA;
+      --ink-soft: #9DAB9F;
+      --border: #364039;
+      --accent: #5FA98F;
+      --accent-dark: #7CC0A6;
+      --accent-tint: #223530;
+      --gold: #E0A75E;
+      --gold-tint: #33291A;
+      --error: #E38468;
+      --error-tint: #3A2620;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161C18;
+    --surface: #1F2721;
+    --surface-sunken: #253028;
+    --ink: #EDF1EA;
+    --ink-soft: #9DAB9F;
+    --border: #364039;
+    --accent: #5FA98F;
+    --accent-dark: #7CC0A6;
+    --accent-tint: #223530;
+    --gold: #E0A75E;
+    --gold-tint: #33291A;
+    --error: #E38468;
+    --error-tint: #3A2620;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 64px) clamp(18px, 5vw, 40px) 64px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  @media (min-width: 900px) {
+    .wrap {
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: start;
+      gap: 48px;
+    }
+  }
+
+  /* ---------- Hero / Info side ---------- */
+  .hero {
+    position: relative;
+    padding: 36px 32px 32px;
+    background: linear-gradient(165deg, var(--accent-dark) 0%, var(--accent) 100%);
+    color: #F4F8F5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 900px) {
+    .hero { position: sticky; top: 24px; }
+  }
+
+  .hero-mark {
+    width: 42px; height: 42px;
+    margin-bottom: 28px;
+    opacity: 0.95;
+  }
+
+  .hero-eyebrow {
+    font-size: 13.5px;
+    color: #CFE6DA;
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(30px, 4vw, 40px);
+    line-height: 1.08;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p.lead {
+    font-size: 15.5px;
+    color: #DCEBE1;
+    max-width: 42ch;
+    margin: 0 0 28px;
+  }
+
+  .hero-facts {
+    display: grid;
+    gap: 14px;
+    margin: 0 0 30px;
+    padding: 0;
+    list-style: none;
+  }
+  .hero-facts li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: #EAF3EE;
+  }
+  .hero-facts svg { flex: none; margin-top: 1px; opacity: 0.85; }
+  .hero-facts b { color: #fff; font-weight: 600; }
+
+  .hero-quote {
+    border-top: 1px solid rgba(255,255,255,0.18);
+    padding-top: 20px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16.5px;
+    color: #F1F7F3;
+    line-height: 1.5;
+  }
+  .hero-quote span { display: block; margin-top: 10px; font-family: 'Inter', sans-serif; font-style: normal; font-size: 13px; color: #CFE6DA; }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -60px; bottom: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.10), transparent 70%);
+  }
+
+  /* ---------- Form card ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(22px, 4vw, 40px);
+  }
+
+  .steps {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+  .step-item { display: flex; align-items: center; gap: 8px; flex: none; }
+  .step-dot {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12.5px; font-weight: 600;
+    color: var(--ink-soft);
+    background: var(--surface);
+    transition: background .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .step-label {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    display: none;
+  }
+  @media (min-width: 560px) { .step-label { display: inline; } }
+  .step-line {
+    flex: 1;
+    height: 1.5px;
+    background: var(--border);
+    position: relative;
+  }
+  .step-line i {
+    position: absolute; inset: 0;
+    background: var(--accent);
+    width: 0%;
+    transition: width .35s ease;
+  }
+  .step-item.done .step-dot { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .step-item.active .step-dot { border-color: var(--accent); color: var(--accent); }
+  .step-item.active .step-label,
+  .step-item.done .step-label { color: var(--ink); }
+
+  form { position: relative; }
+
+  .panel {
+    display: none;
+    animation: rise .38s ease;
+  }
+  .panel.active { display: block; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .panel .sub {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin: 0 0 26px;
+  }
+
+  .field { margin-bottom: 20px; }
+  .field-row { display: grid; gap: 16px; }
+  @media (min-width: 560px) { .field-row.two { grid-template-columns: 1fr 1fr; } }
+
+  label.f-label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    color: var(--ink);
+  }
+  label.f-label .opt { color: var(--ink-soft); font-weight: 400; }
+
+  .input, textarea.input, select.input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--surface-sunken);
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    transition: border-color .15s ease, background .15s ease;
+    outline: none;
+  }
+  .input::placeholder { color: var(--ink-soft); opacity: .7; }
+  .input:focus, textarea.input:focus, select.input:focus {
+    background: var(--surface);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-tint);
+  }
+  .input:focus-visible, textarea.input:focus-visible, select.input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  textarea.input { resize: vertical; min-height: 88px; }
+
+  .field.invalid .input { background: var(--error-tint); border-color: var(--error); }
+  .err-msg {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    color: var(--error);
+    font-size: 12.5px;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .field.invalid .err-msg { display: flex; }
+
+  .hint { font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; }
+
+  /* Track cards */
+  .track-grid { display: grid; gap: 12px; }
+  @media (min-width: 560px) { .track-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .track {
+    position: relative;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 16px 15px;
+    background: var(--surface);
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .track:hover { border-color: var(--accent); }
+  .track input { position: absolute; opacity: 0; pointer-events: none; }
+  .track .t-icon { margin-bottom: 10px; }
+  .track .t-name { font-weight: 600; font-size: 14.5px; margin-bottom: 3px; }
+  .track .t-desc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
+  .track input:checked ~ .t-check {
+    opacity: 1; transform: scale(1);
+  }
+  .track:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-tint);
+  }
+  .t-check {
+    position: absolute; top: 12px; right: 12px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(.6);
+    transition: all .15s ease;
+  }
+  .t-check svg { width: 10px; height: 10px; }
+
+  .level-group { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    position: relative;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    padding: 9px 16px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: var(--surface);
+    transition: all .15s ease;
+  }
+  .pill input { position: absolute; opacity: 0; pointer-events: none; }
+  .pill:has(input:checked) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .pill:hover { border-color: var(--accent); }
+
+  .check-row {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 14px;
+    background: var(--surface-sunken);
+    border-radius: var(--radius-sm);
+    margin-top: 6px;
+  }
+  .check-row input { margin-top: 3px; accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+  .check-row label { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+  .check-row a { color: var(--accent-dark); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Review */
+  .review-block {
+    background: var(--surface-sunken);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    margin-bottom: 20px;
+  }
+  .review-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .review-row:last-child { border-bottom: none; }
+  .review-row .k { color: var(--ink-soft); }
+  .review-row .v { font-weight: 600; text-align: right; }
+
+  /* Actions */
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 12px;
+  }
+  .btn {
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 12px 24px;
+    cursor: pointer;
+    border: none;
+    transition: transform .12s ease, background .15s ease, box-shadow .15s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 6px 16px -6px rgba(47,111,94,0.55);
+  }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink-soft);
+    padding: 12px 8px;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+
+  .spacer-btn { visibility: hidden; }
+
+  /* Success */
+  .success {
+    display: none;
+    text-align: center;
+    padding: 20px 6px 6px;
+  }
+  .success.active { display: block; animation: rise .4s ease; }
+  .success .ring {
+    width: 64px; height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--accent-tint);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .success h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    margin: 0 0 8px;
+  }
+  .success p { color: var(--ink-soft); font-size: 14.5px; margin: 0 auto 26px; max-width: 38ch; }
+  .success .code {
+    display: inline-block;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: var(--gold-tint);
+    color: var(--gold);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 26px;
+    font-size: 15px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel, .success { animation: none !important; }
+    * { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <aside class="hero">
+    <svg class="hero-mark" viewBox="0 0 42 42" fill="none">
+      <path d="M21 3C21 3 10 10 10 21C10 29.8 14.8 34.8 21 39C27.2 34.8 32 29.8 32 21C32 10 21 3 21 3Z" stroke="#F4F8F5" stroke-width="1.6"/>
+      <path d="M21 12V33M21 18C21 18 15.5 17 14 21M21 24C21 24 27 22.5 28 18" stroke="#F4F8F5" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <p class="hero-eyebrow">Field Notes — Autumn Session</p>
+    <h1>Three days with a camera and nowhere to be.</h1>
+    <p class="lead">A small-group photography workshop held in the Kumaon foothills — for people who'd rather learn by walking than by watching a screen.</p>
+
+    <ul class="hero-facts">
+      <li>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.5" stroke="#DCEBE1" stroke-width="1.3"/><path d="M2 6.5H14M5 2v2.4M11 2v2.4" stroke="#DCEBE1" stroke-width="1.3" stroke-linecap="round"/></svg>
+        <span><b>Nov 14–16, 2026</b> · three field days</span>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C5 1.5 3 3.8 3 6.4c0 3.6 5 8.1 5 8.1s5-4.5 5-8.1c0-2.6-2-4.9-5-4.9Z" stroke="#DCEBE1" stroke-width="1.3"/><circle cx="8" cy="6.3" r="1.6" stroke="#DCEBE1" stroke-width="1.3"/></svg>
+        <span><b>Binsar, Uttarakhand</b> · base camp + two treks</span>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.3" r="2.3" stroke="#DCEBE1" stroke-width="1.3"/><path d="M3 14c0-2.5 2.2-4 5-4s5 1.5 5 4" stroke="#DCEBE1" stroke-width="1.3" stroke-linecap="round"/></svg>
+        <span><b>12 seats</b> · kept small on purpose</span>
+      </li>
+    </ul>
+
+    <p class="hero-quote">
+      "Nobody remembers the settings you used. They remember whether you were paying attention."
+      <span>— Ranjan Oberoi, workshop lead</span>
+    </p>
+  </aside>
+
+  <!-- FORM CARD -->
+  <main class="card">
+
+    <div class="steps" id="steps">
+      <div class="step-item active" data-step="1">
+        <div class="step-dot">1</div>
+        <div class="step-label">Your details</div>
+      </div>
+      <div class="step-line"><i></i></div>
+      <div class="step-item" data-step="2">
+        <div class="step-dot">2</div>
+        <div class="step-label">Your track</div>
+      </div>
+      <div class="step-line"><i></i></div>
+      <div class="step-item" data-step="3">
+        <div class="step-dot">3</div>
+        <div class="step-label">Review</div>
+      </div>
+    </div>
+
+    <form id="regForm" novalidate>
+
+      <!-- STEP 1 -->
+      <section class="panel active" data-panel="1">
+        <h2>Let's start with you</h2>
+        <p class="sub">We'll email your confirmation and a printable kit list here.</p>
+
+        <div class="field" id="f-name">
+          <label class="f-label" for="name">Full name</label>
+          <input class="input" type="text" id="name" placeholder="As you'd like it on your badge" autocomplete="name">
+          <div class="err-msg">Tell us what to put on your badge.</div>
+        </div>
+
+        <div class="field-row two">
+          <div class="field" id="f-email">
+            <label class="f-label" for="email">Email</label>
+            <input class="input" type="email" id="email" placeholder="you@example.com" autocomplete="email">
+            <div class="err-msg">That doesn't look like a valid email.</div>
+          </div>
+          <div class="field" id="f-phone">
+            <label class="f-label" for="phone">Phone <span class="opt">(for the base-camp group)</span></label>
+            <input class="input" type="tel" id="phone" placeholder="10-digit mobile number" autocomplete="tel">
+            <div class="err-msg">Enter a 10-digit mobile number.</div>
+          </div>
+        </div>
+
+        <div class="field" id="f-city">
+          <label class="f-label" for="city">Home city</label>
+          <input class="input" type="text" id="city" placeholder="Where you're travelling from">
+          <div class="err-msg">Let us know where you're coming from.</div>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="panel" data-panel="2">
+        <h2>Pick your track</h2>
+        <p class="sub">Each track shares the base camp but follows its own route and pace.</p>
+
+        <div class="field" id="f-track">
+          <div class="track-grid">
+            <label class="track">
+              <input type="radio" name="track" value="Landscape & Light">
+              <div class="t-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M2 17L8 9L12 13.5L15 10L20 17" stroke="#2F6F5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="6" r="2" stroke="#2F6F5E" stroke-width="1.5"/></svg></div>
+              <div class="t-name">Landscape &amp; Light</div>
+              <div class="t-desc">Slow mornings, wide valleys, chasing the golden hour.</div>
+              <div class="t-check"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5L4 8L9 1.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </label>
+            <label class="track">
+              <input type="radio" name="track" value="Wildlife & Movement">
+              <div class="t-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 15c2-5 5-8 8-8s5 2 6 5" stroke="#2F6F5E" stroke-width="1.5" stroke-linecap="round"/><circle cx="11" cy="10" r="2" stroke="#2F6F5E" stroke-width="1.5"/></svg></div>
+              <div class="t-name">Wildlife &amp; Movement</div>
+              <div class="t-desc">Long lenses, patience, and reading the forest.</div>
+              <div class="t-check"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5L4 8L9 1.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </label>
+            <label class="track">
+              <input type="radio" name="track" value="Macro & Texture">
+              <div class="t-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9" cy="9" r="6" stroke="#2F6F5E" stroke-width="1.5"/><path d="M13.5 13.5L19 19" stroke="#2F6F5E" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+              <div class="t-name">Macro &amp; Texture</div>
+              <div class="t-desc">Moss, frost, and the small worlds underfoot.</div>
+              <div class="t-check"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5L4 8L9 1.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </label>
+          </div>
+          <div class="err-msg" style="margin-top:12px;">Pick a track so we know which guide to place you with.</div>
+        </div>
+
+        <div class="field" id="f-level" style="margin-top:26px;">
+          <label class="f-label">Your experience level</label>
+          <div class="level-group">
+            <label class="pill"><input type="radio" name="level" value="New to this">New to this</label>
+            <label class="pill"><input type="radio" name="level" value="Comfortable with manual mode">Comfortable with manual</label>
+            <label class="pill"><input type="radio" name="level" value="Shoot regularly">Shoot regularly</label>
+          </div>
+          <div class="err-msg">Give us a sense of where you're starting from.</div>
+        </div>
+
+        <div class="field" style="margin-top:22px;">
+          <label class="f-label" for="notes">Anything we should know <span class="opt">(optional)</span></label>
+          <textarea class="input" id="notes" placeholder="Dietary needs, mobility notes, gear you're bringing…"></textarea>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="panel" data-panel="3">
+        <h2>Review &amp; confirm</h2>
+        <p class="sub">Check the details below — you can still go back and change anything.</p>
+
+        <div class="review-block" id="reviewBlock"></div>
+
+        <div class="check-row">
+          <input type="checkbox" id="terms">
+          <label for="terms">I understand this is a field workshop with moderate hiking, and I agree to the <a href="#" onclick="return false;">cancellation policy</a>.</label>
+        </div>
+        <div class="err-msg" id="termsErr" style="margin-top:8px;">Please confirm before submitting.</div>
+      </section>
+
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" id="backBtn">Back</button>
+        <button type="button" class="btn btn-primary" id="nextBtn">Continue</button>
+      </div>
+    </form>
+
+    <!-- SUCCESS STATE -->
+    <div class="success" id="successPanel">
+      <div class="ring">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 13.5L10.5 19L21 7" stroke="#2F6F5E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2>You're on the list</h2>
+      <p>A confirmation and kit list are on their way to your inbox. We'll follow up two weeks out with transport details.</p>
+      <div class="code" id="confCode">FN-2026-0000</div>
+      <div>
+        <button type="button" class="btn btn-primary" id="resetBtn">Register someone else</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  const form = document.getElementById('regForm');
+  const panels = [...document.querySelectorAll('.panel')];
+  const stepItems = [...document.querySelectorAll('.step-item')];
+  const lines = [...document.querySelectorAll('.step-line i')];
+  const nextBtn = document.getElementById('nextBtn');
+  const backBtn = document.getElementById('backBtn');
+  const successPanel = document.getElementById('successPanel');
+  const card = document.querySelector('.card');
+
+  let step = 1;
+  const total = 3;
+
+  const fields = {
+    name: { el: document.getElementById('name'), wrap: document.getElementById('f-name'),
+      validate: v => v.trim().length >= 2 },
+    email: { el: document.getElementById('email'), wrap: document.getElementById('f-email'),
+      validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+    phone: { el: document.getElementById('phone'), wrap: document.getElementById('f-phone'),
+      validate: v => /^[0-9]{10}$/.test(v.trim().replace(/\D/g, '')) },
+    city: { el: document.getElementById('city'), wrap: document.getElementById('f-city'),
+      validate: v => v.trim().length >= 2 },
+  };
+
+  function validateField(key) {
+    const f = fields[key];
+    const ok = f.validate(f.el.value);
+    f.wrap.classList.toggle('invalid', !ok);
+    return ok;
+  }
+
+  Object.keys(fields).forEach(key => {
+    const f = fields[key];
+    f.el.addEventListener('blur', () => validateField(key));
+    f.el.addEventListener('input', () => {
+      if (f.wrap.classList.contains('invalid')) validateField(key);
+    });
+  });
+
+  function validateStep1() {
+    return Object.keys(fields).map(validateField).every(Boolean);
+  }
+
+  function validateStep2() {
+    const track = document.querySelector('input[name="track"]:checked');
+    const level = document.querySelector('input[name="level"]:checked');
+    const trackWrap = document.getElementById('f-track');
+    const levelWrap = document.getElementById('f-level');
+    trackWrap.classList.toggle('invalid', !track);
+    levelWrap.classList.toggle('invalid', !level);
+    return !!track && !!level;
+  }
+
+  function validateStep3() {
+    const terms = document.getElementById('terms');
+    const err = document.getElementById('termsErr');
+    const ok = terms.checked;
+    err.style.display = ok ? 'none' : 'flex';
+    return ok;
+  }
+
+  function updateSteps() {
+    stepItems.forEach(item => {
+      const n = Number(item.dataset.step);
+      item.classList.toggle('active', n === step);
+      item.classList.toggle('done', n < step);
+    });
+    lines.forEach((line, i) => {
+      line.style.width = (i < step - 1) ? '100%' : '0%';
+    });
+  }
+
+  function showPanel() {
+    panels.forEach(p => p.classList.toggle('active', Number(p.dataset.panel) === step));
+    backBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
+    nextBtn.textContent = step === total ? 'Confirm registration' : 'Continue';
+    updateSteps();
+    if (step === total) buildReview();
+  }
+
+  function buildReview() {
+    const track = document.querySelector('input[name="track"]:checked');
+    const level = document.querySelector('input[name="level"]:checked');
+    const rows = [
+      ['Name', fields.name.el.value.trim()],
+      ['Email', fields.email.el.value.trim()],
+      ['Phone', fields.phone.el.value.trim()],
+      ['Home city', fields.city.el.value.trim()],
+      ['Track', track ? track.value : '—'],
+      ['Experience', level ? level.value : '—'],
+    ];
+    document.getElementById('reviewBlock').innerHTML = rows.map(([k, v]) =>
+      `<div class="review-row"><span class="k">${k}</span><span class="v">${escapeHtml(v)}</span></div>`
+    ).join('');
+  }
+
+  function escapeHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    let ok = true;
+    if (step === 1) ok = validateStep1();
+    else if (step === 2) ok = validateStep2();
+    else if (step === 3) ok = validateStep3();
+
+    if (!ok) {
+      const invalidField = document.querySelector('.panel.active .invalid');
+      if (invalidField) invalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    if (step < total) {
+      step++;
+      showPanel();
+    } else {
+      submitForm();
+    }
+  });
+
+  backBtn.addEventListener('click', () => {
+    if (step > 1) { step--; showPanel(); }
+  });
+
+  function submitForm() {
+    const code = 'FN-2026-' + String(Math.floor(1000 + Math.random() * 9000));
+    document.getElementById('confCode').textContent = code;
+    form.style.display = 'none';
+    document.getElementById('steps').style.display = 'none';
+    successPanel.classList.add('active');
+  }
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    form.reset();
+    Object.values(fields).forEach(f => f.wrap.classList.remove('invalid'));
+    document.getElementById('f-track').classList.remove('invalid');
+    document.getElementById('f-level').classList.remove('invalid');
+    document.getElementById('termsErr').style.display = 'none';
+    step = 1;
+    form.style.display = 'block';
+    document.getElementById('steps').style.display = 'flex';
+    successPanel.classList.remove('active');
+    showPanel();
+  });
+
+  showPanel();
+})();
+</script>
+</body>
+</html>
